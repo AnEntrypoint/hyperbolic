@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Containers</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.7.3/dist/full.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 py-10">
+  <div class="container mx-auto px-4">
+    <h1 class="text-4xl mb-8">Containers</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <% containers.forEach(container => { %>
+        <div class="card bordered">
+          <figure>
+            <img src="https://via.placeholder.com/150">
+          </figure>
+          <div class="card-body">
+            <h2 class="card-title"><%= container.Names[0] %></h2>  
+            <a href="/container/<%= container.Id %>" class="btn btn-secondary mt-3">View Details</a>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- [Your Current Head Content Here] -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+  </head>
+<body>
+  <!-- [Your Current Body Content Here] -->
+  <div class="container mx-auto px-4">
+    <h2>Stream: </h2>
+    <pre id="stdout"></pre>
+    <h2>Error: </h2>
+    <pre id="stderr"></pre>
+    <h2>Send command: </h2>
+    <input id="stdin" />
+    <button id="sendCommand">Send command</button>
+    <button id="killProcess">Kill process</button>
+  </div>
+  <script>
+    var socket = io('http://localhost:9898');
+    socket.on('stdout', function(data){
+      document.getElementById('stdout').textContent += data;
+    });
+    socket.on('stderr', function(data){
+      document.getElementById('stderr').textContent += data;
+    });
+    document.getElementById('sendCommand').addEventListener('click', function() {
+      var command = document.getElementById('stdin').value;
+      socket.emit('stdin', command);
+    });
+    document.getElementById('killProcess').addEventListener('click', function() {
+      socket.emit('kill');
+    });
+  </script>
+</body>
+</html>
