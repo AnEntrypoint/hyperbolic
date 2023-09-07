@@ -5,7 +5,7 @@ var auth = require('basic-auth-connect');
 let docker = new dockerode();
 var auth = require('basic-auth-connect');
 let app = express();
-app.use(auth('admin', 'iamtheadminlordbowbeforeme'));
+app.use(auth(process.env.USER, process.env.PASS));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
